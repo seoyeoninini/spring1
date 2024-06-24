@@ -3,23 +3,19 @@ package com.sp.app.calc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 // 클라이언트 요청시 최초 실행. 
 @Controller
-@RequestMapping("/calc/*")
-public class CalculatorController {
-	/* @Autowired를 필드에 붙이고, 
-	 의존성을 가진 클래스(CalculatorService라고 쓰여 있지만 구현 클래스 - Impl)에 @Service를 붙인다.  
-	*/
+@RequestMapping("/calc3/*")
+public class CalculatorController3 {
 	
 	@Autowired
 	private CalculatorService service;
 	
-	// @RequestMapping(value = "write", method = RequestMethod.GET)
-	@GetMapping("write") // 아래와 어노테이션과 같은 코드
+	// @GetMapping("write") // 아래와 어노테이션과 같은 코드
+	@RequestMapping(value = "write", method = RequestMethod.GET)
 	public String form() {
 		/*
 		 - 요청 메소드의 리턴 타입이 String 이면 리턴값을 JSP 이름이다.
@@ -47,19 +43,8 @@ public class CalculatorController {
 	*/
 	
 	// 위와 같은 코드나 아래  
-	// @RequestMapping(value = "write", method = RequestMethod.POST)
-	@PostMapping("write")
-	public String submit(int num1, String operator, int num2, Model model) {
-		
-		/*
-		  - 요청을 받는 메소드의 인수이름과 파라미터 이름이 같으면 
-		    요청하면서 보낸 파라미터를 받을 수 있다.
-		 */
-		
-		Calculator dto = new Calculator();
-		dto.setNum1(num1);
-		dto.setNum2(num2);
-		dto.setOperator(operator);
+	@RequestMapping(value = "write", method = RequestMethod.POST)
+	public String submit(Calculator dto, Model model) {
 		
 		int s = service.result(dto);
 		

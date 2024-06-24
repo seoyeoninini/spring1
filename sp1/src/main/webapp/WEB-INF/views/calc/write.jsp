@@ -18,7 +18,7 @@
 			<option value="*">곱하기</option>
 			<option value="/">나누기</option>
 		</select>
-		<input type="text" name="num1" required="required" pattern="\d+">
+		<input type="text" name="num2" required="required" pattern="\d+">
 		<button type="submit"> 결과 </button>
 	</form>
 
